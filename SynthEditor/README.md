@@ -1,4 +1,4 @@
-# SynthEditor 0.2 — edytor layoutów instrumentów
+# SynthEditor 0.4 — edytor layoutów instrumentów
 
 Prototyp Qt 6 Widgets / C++17.
 
@@ -33,3 +33,7 @@ To prototyp źródłowy. Nie został skompilowany w Twoim lokalnym środowisku; 
 
 ## v0.3
 - Poprawiono zmianę rozmiaru elementów: rozmiar jest liczony od wymiarów z chwili rozpoczęcia przeciągania, dzięki czemu nie narasta chaotycznie przy kolejnych ruchach myszy.
+
+
+## Pakiet integracyjny
+Zobacz `../README_INTEGRACJA.md`, `../PARAMETRY.md` i `../BUILD.md`. Generator C++ znajduje się w `../tools/` a biblioteka DSP w `../SynthEngine/`.
