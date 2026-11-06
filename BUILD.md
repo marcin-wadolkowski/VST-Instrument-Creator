@@ -35,11 +35,28 @@ Generator czyta `elements` (SynthEditor) lub `widgets` (starszy format VST3Templ
 Duplikaty ID są pomijane, a niepoprawny zakres zatrzymuje generowanie.
 
 ## 4. VST3Template
-Otwórz `VST3Template/CMakeLists.txt` w środowisku z VST3 SDK/vcpkg i sprawdź konfigurację
-zależności w `vcpkg.json`. Następnie skonfiguruj i buduj zgodnie z konfiguracją CMake
-własnego środowiska. Dołączanie/instalowanie gotowej wtyczki w DAW zależy od hosta.
+Najpierw wygeneruj nagłówek z pliku zapisanego przez SynthEditor:
+
+```bat
+build-generator\\Release\\SynthCodeGen.exe instrument.dat VST3Template\\generated\\GeneratedParameters.h
+```
+
+Następnie skonfiguruj i zbuduj `VST3Template`. Domyślnie CMake szuka nagłówka
+`VST3Template/generated/GeneratedParameters.h`. Dla innej lokalizacji przekaż:
+
+```bat
+-DGENERATED_PARAMETERS_HEADER="C:/ścieżka/GeneratedParameters.h"
+```
+
+Szablon rejestruje parametry z tego nagłówka w VST3. Po każdej zmianie instrumentu
+ponownie uruchom generator i przebuduj plugin.
 
 **Ważne:** `build.bat` z oryginalnego szkieletu wskazuje na konkretną wersję CMake i generator
 Visual Studio. Jeśli nie masz dokładnie tych ścieżek, zmień je na ścieżki z własnej instalacji.
 Samo ustawienie rozszerzenia `.vst3` nie wystarcza do poprawnej paczki VST3 na wszystkich
 systemach — wtyczka wymaga prawidłowej fabryki, metadanych i struktury pakietu SDK.
+
+## GUI pluginu
+Qt 6 pozostaje technologią aplikacji SynthEditor. Dla osadzanego GUI VST3 zalecane jest
+VSTGUI / `IPlugView`; obecne linkowanie VSTGUI w szablonie nie oznacza jeszcze, że widok
+jest zaimplementowany. Szczegóły w `README_INTEGRACJA.md`.

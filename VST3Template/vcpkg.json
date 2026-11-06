@@ -2,8 +2,7 @@
   "name": "vst3-template",
   "version-string": "1.0.0",
   "dependencies": [
-    "vst3sdk",
-    "nlohmann-json"
+    "vst3sdk"
   ],
   "builtin-baseline": "19c330612911442c9939e4a89f85c97603089389"
 }

@@ -44,11 +44,11 @@ int main(int argc, char** argv) {
     std::ofstream out(argv[2]);
     if (!out) { std::cerr << "Cannot write output: " << argv[2] << "\n"; return 1; }
     out << "#pragma once\n#include <array>\n#include <string_view>\n\n"
-           "struct GeneratedParameter { std::string_view id; double minimum; double maximum; double defaultValue; };\n"
+           "struct GeneratedParameter { std::string_view id; std::string_view name; double minimum; double maximum; double defaultValue; };\n"
         << "inline constexpr std::array<GeneratedParameter, " << params.size()
         << "> kGeneratedParameters{{\n";
     for (const auto& p : params)
-        out << "    {\"" << p.id << "\", " << p.min << ", " << p.max << ", " << p.value << "},\n";
+        out << "    {\"" << p.id << "\", \"" << p.id << "\", " << p.min << ", " << p.max << ", " << p.value << "},\n";
     out << "}};\n";
     std::cout << "Generated " << params.size() << " parameter(s) in " << argv[2] << "\n";
     return 0;
